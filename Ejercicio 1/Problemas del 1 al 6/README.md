@@ -1,0 +1,5 @@
+Los ejercicios del 1 al 6 se corren en terminal con el siguiente formato:
+
+java VerificadorDeExpresiones <archivo> <L#>;
+
+Ejemplo: java VerificadorDeExpresiones ejemploL1_aceptar.txt L1;

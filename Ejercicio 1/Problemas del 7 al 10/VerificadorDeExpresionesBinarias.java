@@ -3,12 +3,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.regex.Pattern;
 
-public class VerificadorDeExpresionesBinary {
+public class VerificadorDeExpresionesBinarias {
 
     public static void main(String[] args) {
         if (args.length != 2) {
             System.out.println("Uso: java VerificadorDeExpresionesBinary <archivo> <L#> (7<=#<=10)");
-            System.out.println("Ejemplo: java VerificadorDeExpresionesBinary 'ejemplo 7 (aceptar).txt' L7");
+            System.out.println("Ejemplo: java VerificadorDeExpresionesBinary ejemploL7_aceptar.txt L7");
             return;
         }
 
@@ -19,16 +19,16 @@ public class VerificadorDeExpresionesBinary {
 
         switch (lenguaje) {
             case "L7":
-                expresionRegular = "^(0|00|.*000)$";
+                expresionRegular = "^(0+|[01]*000)$";
                 break;
             case "L8":
-                expresionRegular = "^(1(1[01]|0[1-9])|[01]{4,})$";
+                expresionRegular = "^(0*(1[01]{3,}|1[01]*1[01]*1[01]*|110))$";
                 break;
             case "L9":
-                expresionRegular = "^(0*1{5}0*)*$";
+                expresionRegular = "^(0*|(0*10*10*10*10*10*)*)$";
                 break;
             case "L10":
-                expresionRegular = "1(00+1)*";
+                expresionRegular = "^0*$|^0*1(00+1)*0*$";
                 break;
             default:
                 System.out.println("Lenguaje no reconocido. Usa L7, L8, L9 o L10.");
