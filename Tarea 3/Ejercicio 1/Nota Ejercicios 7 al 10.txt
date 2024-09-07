@@ -1,0 +1,5 @@
+Los ejercicios del 7 al 10 se corren en terminal con el siguiente formato:
+
+java VerificadorBinario <archivo> <L#>");
+
+Ejemplo: java VerificadorBinaio ejemploL8_aceptar.txt L8");
