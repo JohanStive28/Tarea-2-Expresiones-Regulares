@@ -1,0 +1,30 @@
+Estas son las expresiones incluidas en el enunciado, se dejan en un txt pues estas pierden formato al copiarlas del pdf:
+
+--------------------------------------------------------------------------------------------------
+La transicion ( , λ, λ) es para que no haga nada el automata si lee espacios en blanco, con el objetivo de que (x * y + x * y * z == x*y+x*y*z)
+--------------------------------------------------------------------------------------------------
+
+Por ejemplo, las siguientes son expresiones válidas:
+{x + y * z} + {{x * x} + z}
+x + y + z
+x * y + x * y * z
+{{y * z}} + {{y + z} + {{x + x} * {y * y}}}
+
+Pero estas expresiones no lo son:
+xx + y
+}x * z{{
+{{x * y
+y * +x{z}
+
+
+---------------Ahora, el automata funciona de la siguiente manera---------------
+- Las 'A' indican la cantidad de llaves abiertas
+- Si entra x, y o z, entonces se empuja una 'E' a la pila.
+- Si entra un + o *, y habia una 'E' en la pila, entonces se reemplaza la E por una C (esta C indica que se esta esperando una expresion valida para sumar o multiplicar)
+- Si entra una x, y o z y había una C, entonces se reemplaza con una 'N' (La N indica que estamos ante una expresion valida, por eso la transicion al nodo aceptado recibe 'NZ')
+- El unico caso donde se pueden abrir nuevas llaves es si no hay nada, o si hay una 'C', que es la indicadora de que se espera otra expresion.
+- Se pueden abrir llaves seguidas, por eso, si se detecta una 'A', se cambia por 'AA'.
+- Si tenemos una expresion valida (N), podemos seguir contenando cosas (+ ó *), esto se logra volviendo a una C si se recibe un + ó *, pues C espera una expresion nueva para volver a ser valida (N).
+- Si se recibe una '}' y hay 'NA' en la pila, podemos reemplazar esas dos unicamente por 'N' para cerrar la llave e indicar que estamos ante una expresion valida.
+
+Nota: Si bien N indica una expresion valida, la presencia de esta no indica que toda la hilera esta bien, pues la hilera puede ser "NAAZ", la N indica que ya se leyó una expresion que esta bien, aun así, quedan dos llaves por cerrar, si se termina ahí, entonces la expresion no es válida.
